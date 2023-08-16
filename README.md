@@ -1,6 +1,6 @@
 # pip_view_custom_size
 
-This is a form from ![pip_view](https://github.com/lslv1243/pip_view) which enables the custom sizes for floating widget. 
+This is a fork from ![pip_view](https://github.com/lslv1243/pip_view) which enables the custom sizes for floating widget. 
 
 
 # pip_view
