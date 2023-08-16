@@ -1,6 +1,7 @@
-# TODO 
+# pip_view_custom_size
 
-Need to update the docs
+This is a form from ![pip_view](https://github.com/lslv1243/pip_view) which enables the custom sizes for floating widget. 
+
 
 # pip_view
 
@@ -10,12 +11,13 @@ Widget to allow the presentation of a widget below a floating one. It supports m
 
 ## Usage
 
-Create a `PIPView` widget, the prop `builder` will be the view rendered floating when requested. To present a view below the floating view use `PIPView.of(context).presentBelow(MyWidget())`.
+Create a `PIPView` widget, the prop `builder` will be the view rendered floating when requested. To present a view below the floating view use `PIPView.of(context).presentBelow(MyWidget(), initialWidgetSize: Size(280, 320))`. `initialWidgetSize` is optional. By adding that you'll set the starting size of the floating view/widget. if `initialWidgetSize` not set, the floating view/widget will take the full screen size.
 
 ### Props:
 
 - `avoidKeyboard`: whether the floating view should avoid the keyboard;
 - `builder`: a builder for the widget to float, the second parameter indicates if the view is floating;
+- `floatingWidget`: a specific widget to be float, this is optional. when this is set the widget(parent) within the builder will be ignored when floating.
 - `initialCorner`: the corner in which the floating view will be sticked initially
   - Possible values are: `PIPViewCorner.topLeft`, `PIPViewCorner.topRight`, `PIPViewCorner.bottomLeft`, `PIPViewCorner.bottomRight`;
 - `floatingHeight`: the height of the foreground view when floating. If not set is calculated from the `floatingWidth` to keep aspect ratio of the screen;
@@ -36,7 +38,7 @@ class MyScreen extends StatelessWidget {
               MaterialButton(
                 child: Text('Start floating');
                 onPressed: () {
-                  PIPView.of(context).presentBelow(MyBackgroundScreen());
+                  PIPView.of(context).presentBelow(MyBackgroundScreen(), initialWidgetSize: Size(320, 280));
                 },
               ),
             ],

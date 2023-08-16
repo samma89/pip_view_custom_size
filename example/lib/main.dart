@@ -13,8 +13,19 @@ class ExampleApp extends StatelessWidget {
 }
 
 class HomeScreen extends StatelessWidget {
+  final contKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
+    final floatingView = Container(
+      key: contKey,
+      width: 200,
+      height: 200,
+      color: Colors.red,
+      child: Center(
+        child: Text('This is the floating widget!'),
+      ),
+    );
     return PIPView(
       builder: (context, isFloating) {
         return Scaffold(
@@ -25,12 +36,15 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Text('This page will float!'),
+                  floatingView,
+                  Text('This whole page will not float!'),
                   MaterialButton(
                     color: Theme.of(context).primaryColor,
                     child: Text('Start floating!'),
                     onPressed: () {
-                      PIPView.of(context)!.presentBelow(BackgroundScreen());
+                      final floatingContSize = contKey.currentContext?.size;
+                      PIPView.of(context)!.presentBelow(BackgroundScreen(),
+                          initialWidgetSize: floatingContSize);
                     },
                   ),
                 ],
